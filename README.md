@@ -40,6 +40,43 @@ The project follows a client-server architecture:
 
 ---
 
+
+
+## Application Screenshots
+
+MyTasks features a soft claymorphism-inspired interface designed to make everyday task management simple, intuitive, and visually engaging.
+
+### 1. Home Screen
+
+The main dashboard displays task progress, task summaries, and the user’s task list.
+
+### 2. Add a Task
+
+Users can create tasks by entering a title and selecting a priority level.
+
+### 3. Date Picker
+
+Users can select a due date for their tasks using the calendar interface.
+
+### 4. Time Picker
+
+Users can optionally assign a specific time to a task.
+
+### 5. Edit Task
+
+Existing tasks can be updated, allowing users to modify task details and priorities.
+
+### 6. Completed Tasks
+
+Completed tasks are visually distinguished from pending tasks, helping users track their progress.
+
+### 7. Task Management
+
+Users can manage multiple tasks, monitor their status, and organise their daily activities.
+
+
+
+
 ## Features
 
 - **Create Tasks:** Add new tasks with a title and priority.
