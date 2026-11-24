@@ -1,5 +1,6 @@
 
-const BASE_URL = 'http://172.20.10.2:5001';
+const BASE_URL =
+  process.env.EXPO_PUBLIC_API_URL || 'http://localhost:5001';
 
 // The structure of a task returned by MySQL
 export type Task = {
