@@ -58,15 +58,13 @@ const priorityColors: Record<Priority, string> = {
   High: '#F3B9C1',
 };
 
-// Each task gets a pastel colour based on its ID.
-// This keeps its colour consistent when filtering or sorting.
 const taskCardColors = [
-  '#DCEFD6', // Mint
-  '#F9DDA4', // Butter yellow
-  '#E4D5F3', // Lavender
-  '#CDEAF0', // Baby blue
-  '#F5CFC0', // Peach
-  '#F3C2C8', // Soft coral
+  '#DCEFD6',
+  '#F9DDA4',
+  '#E4D5F3',
+  '#CDEAF0',
+  '#F5CFC0',
+  '#F3C2C8',
 ];
 
 export default function HomeScreen() {
@@ -523,7 +521,6 @@ export default function HomeScreen() {
               setActivePicker('addDate');
             }}
           >
-
             <Text style={styles.dateTimeText}>
               {dueDate ? dueDate.toLocaleDateString() : 'Add date'}
             </Text>
@@ -539,7 +536,6 @@ export default function HomeScreen() {
               setActivePicker('addTime');
             }}
           >
-
             <Text style={styles.dateTimeText}>
               {dueTime
                 ? dueTime.toLocaleTimeString([], {
@@ -561,9 +557,7 @@ export default function HomeScreen() {
               onPress={() => setPriority(item)}
               style={({ pressed }) => [
                 styles.priorityChip,
-                {
-                  backgroundColor: priorityColors[item],
-                },
+                { backgroundColor: priorityColors[item] },
                 priority === item && styles.selectedPriorityChip,
                 pressed && styles.buttonPressed,
               ]}
@@ -669,9 +663,7 @@ export default function HomeScreen() {
               }}
               style={[
                 styles.taskCard,
-                {
-                  backgroundColor: getTaskColor(task.id),
-                },
+                { backgroundColor: getTaskColor(task.id) },
                 editingTaskId === task.id && styles.editingCard,
               ]}
             >
@@ -698,9 +690,7 @@ export default function HomeScreen() {
                         onPress={() => setEditPriority(item)}
                         style={[
                           styles.editPriorityChip,
-                          {
-                            backgroundColor: priorityColors[item],
-                          },
+                          { backgroundColor: priorityColors[item] },
                           editPriority === item && styles.selectedPriorityChip,
                         ]}
                       >
@@ -1234,6 +1224,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 9,
     marginBottom: 32,
+    paddingTop: 5,
+    paddingBottom: 7,
   },
 
   priorityChip: {
@@ -1257,8 +1249,21 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
+  // SELECTED BUTTON: BIGGER, HIGHER AND MORE RAISED
   selectedPriorityChip: {
-    borderColor: '#FFFFFF',
+    transform: [
+      { scale: 1.09 },
+      { translateY: -4 },
+    ],
+    zIndex: 10,
+    elevation: 12,
+    borderTopWidth: 3,
+    borderLeftWidth: 3,
+    borderBottomWidth: 5,
+    shadowColor: '#806B59',
+    shadowOffset: { width: 2, height: 10 },
+    shadowOpacity: 0.48,
+    shadowRadius: 11,
   },
 
   priorityStar: {
@@ -1534,6 +1539,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 9,
     flexWrap: 'wrap',
+    paddingTop: 5,
+    paddingBottom: 7,
   },
 
   editPriorityChip: {
