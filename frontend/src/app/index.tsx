@@ -1400,11 +1400,10 @@ const styles = StyleSheet.create({
   },
 
   editingCard: {
-    alignItems: 'stretch',
-    backgroundColor: '#E9D8F1',
-    borderColor: '#FFFFFF',
-    borderBottomColor: '#C2A9D0',
-  },
+  alignItems: 'stretch',
+  borderColor: '#FFFFFF',
+  borderBottomColor: '#C8BDAE',
+},
 
   checkbox: {
     width: 27,

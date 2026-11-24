@@ -45,9 +45,12 @@ The project involved designing and developing a complete mobile application, inc
 
 ### Application Preview
 
-![MyTasks Home Screen](../screenshots/01-home-screen.PNG)
 
-*The MyTasks dashboard, showing the task management interface.*
+<div align="center">
+  <img src="../screenshots/01-home-screen.PNG" width="200">
+  <p><em>The MyTasks dashboard, showing the task management interface.</em></p>
+</div>
+
 
 ---
 
@@ -181,9 +184,12 @@ Edit, Complete, or Delete
 
 ### Task Creation
 
-![MyTasks Add Task Screen](../screenshots/02-add-task.PNG)
 
-*The task creation interface allows users to enter task details and select a priority.*
+<div align="center">
+  <img src="../screenshots/02-add-task.PNG" width="200">
+  <p><em>The task creation interface allows users to enter task details and select a priority.</em></p>
+</div>
+
 
 ### Interaction Considerations
 
@@ -403,13 +409,28 @@ Tasks can be assigned one of three priority levels:
 
 Users can assign due dates and times to tasks. Both fields are optional and can be used independently.
 
-### Date Selection
 
-![MyTasks Date Picker](../screenshots/03-date-picker.PNG)
+### Date and Time Selection
 
-### Time Selection
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="../screenshots/03-date-picker.PNG" width="180">
+      <br>
+      <strong>Date Picker</strong>
+      <br>
+      <em>Selecting an optional task due date.</em>
+    </td>
+    <td align="center" width="50%">
+      <img src="../screenshots/04-time-picker.PNG" width="180">
+      <br>
+      <strong>Time Picker</strong>
+      <br>
+      <em>Selecting an optional task due time.</em>
+    </td>
+  </tr>
+</table>
 
-![MyTasks Time Picker](../screenshots/04-time-picker.PNG)
 
 ### 9.7 Task Filtering
 
