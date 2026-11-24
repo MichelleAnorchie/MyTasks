@@ -7,11 +7,18 @@ MyTasks is a full-stack project built with React Native, Expo, Flask, and MySQL.
 
 ---
 
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Application Screenshots](#application-screenshots)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
+- [System Architecture](#system-architecture)
+- [Technology Choices and Design Decisions](#technology-choices-and-design-decisions)
+- [Development Challenges and Solutions](#development-challenges-and-solutions)
+- [My Role and Contributions](#my-role-and-contributions)
+- [Project Status](#project-status)
 - [Project Structure](#project-structure)
 - [Prerequisites](#prerequisites)
 - [Installation and Setup](#installation-and-setup)
@@ -21,22 +28,15 @@ MyTasks is a full-stack project built with React Native, Expo, Flask, and MySQL.
 - [Troubleshooting](#troubleshooting)
 - [Future Improvements](#future-improvements)
 - [Author](#author)
+- [License](#license)
 
 ---
 
 ## Project Overview
 
-MyTasks is a mobile task management application that allows users to create, organise, update, and manage their daily tasks.
+MyTasks is a full-stack mobile task management application designed to help users organise daily activities, prioritise responsibilities, and manage tasks efficiently.
 
-The application uses a React Native frontend to provide the mobile interface, a Flask backend to handle API requests, and a MySQL database to store task information.
-
-The project follows a client-server architecture:
-
-1. The user interacts with the mobile application.
-2. The frontend sends requests to the Flask API.
-3. The backend processes the requests and communicates with MySQL.
-4. The database stores or retrieves the requested information.
-5. The API sends the response back to the mobile application.
+Built with React Native, Expo, Python Flask, and MySQL, the application combines a user-friendly mobile interface with a RESTful backend and persistent database storage. Its claymorphism-inspired design focuses on simplicity, visual clarity, and an engaging user experience.
 
 ---
 
@@ -95,8 +95,6 @@ MyTasks features a soft claymorphism-inspired interface designed to make everyda
 </table>
 
 
-
-
 ## Features
 
 - **Create Tasks:** Add new tasks with a title and priority.
@@ -130,6 +128,192 @@ MyTasks features a soft claymorphism-inspired interface designed to make everyda
 
 ---
 
+
+## System Architecture
+
+MyTasks follows a client-server architecture. The mobile application communicates with a Python Flask backend through REST API endpoints, while MySQL handles persistent data storage.
+
+### Architecture Overview
+
+
+
+```text
++--------------------------------------+
+|          MOBILE APPLICATION          |
+|          React Native + Expo         |
++--------------------------------------+
+                   |
+                   v
++--------------------------------------+
+|             API SERVICE               |
+|       frontend/src/services/api.ts    |
++--------------------------------------+
+                   |
+                   | HTTP Requests
+                   v
++--------------------------------------+
+|             FLASK BACKEND             |
+|                Python                 |
+|                app.py                 |
++--------------------------------------+
+                   |
+                   v
++--------------------------------------+
+|          DATABASE CONNECTION          |
+|              database.py              |
++--------------------------------------+
+                   |
+                   v
++--------------------------------------+
+|            MYSQL DATABASE             |
+|               mytasks_db              |
+|                                       |
+|              tasks table              |
++--------------------------------------+
+```
+
+
+### How the System Works
+
+1. **Frontend:** Users interact with the mobile application built with React Native and Expo.
+2. **API Service:** The frontend sends HTTP requests through the API service.
+3. **Backend:** Flask receives requests, processes application logic and communicates with the database.
+4. **Database Connection:** Python MySQL Connector establishes the connection between Flask and MySQL.
+5. **Database:** MySQL stores task information, including titles, priorities, completion status, due dates and due times.
+6. **Response:** The backend returns the requested data to the frontend, where the interface updates accordingly.
+
+### Main Application Operations
+
+| Operation | HTTP Method | API Endpoint | Purpose |
+|---|---|---|---|
+| Retrieve tasks | GET | `/tasks` | Fetch all tasks |
+| Create task | POST | `/tasks` | Add a new task |
+| Update task | PUT | `/tasks/<id>` | Edit or update a task |
+| Delete task | DELETE | `/tasks/<id>` | Remove a task |
+
+### Database Design
+
+The application uses a MySQL database named mytasks_db with a tasks table to store task records. The database supports task creation, updates, completion tracking and optional scheduling.
+
+## Technology Choices and Design Decisions
+
+The technologies used in MyTasks were selected to support a simple, responsive and maintainable full-stack mobile application.
+
+| Technology | Purpose | Reason for Selection |
+|---|---|---|
+| React Native | Mobile application development | Enables cross-platform mobile development |
+| Expo | Development environment | Simplifies React Native development and testing |
+| TypeScript | Frontend programming | Provides type safety and improves code maintainability |
+| Python | Backend programming | Offers a clear and flexible backend development environment |
+| Flask | REST API development | Lightweight framework for building API endpoints |
+| MySQL | Database management | Provides structured and persistent data storage |
+
+### Key Design Decisions
+
+- **Client-server architecture:** Separates the mobile interface from backend processing and database operations.
+- **REST API integration:** Allows the frontend and backend to communicate through HTTP requests.
+- **Persistent storage:** Uses MySQL to retain tasks beyond individual application sessions.
+- **Optional scheduling:** Allows users to create tasks with or without due dates and times.
+- **Claymorphism UI:** Uses soft colours, layered shadows and rounded components to create a friendly interface.
+- **Component-based development:** Organises the application into reusable and maintainable components.
+
+
+
+## Development Challenges and Solutions
+
+During the development of MyTasks, several technical challenges were encountered and addressed.
+
+### 1. Frontend and Backend Communication
+
+**Challenge:** Connecting the React Native application to the Flask backend during development, particularly when testing on a physical mobile device.
+
+**Solution:** Configured the frontend to communicate with the backend using the computer's local network IP address instead of relying on `localhost`.
+
+### 2. Database Integration
+
+**Challenge:** Ensuring that tasks created or modified through the mobile application were correctly stored in MySQL.
+
+**Solution:** Implemented a database connection using Python's MySQL Connector and integrated database operations into the Flask API.
+
+### 3. Task Scheduling
+
+**Challenge:** Supporting different task scheduling preferences, including tasks with only a date, only a time, both, or neither.
+
+**Solution:** Implemented optional date and time fields and integrated date and time picker components into the application.
+
+### 4. Modal and Picker Interaction
+
+**Challenge:** Managing date and time picker interactions without allowing multiple picker windows to remain open simultaneously.
+
+**Solution:** Implemented controlled modal visibility and outside-tap dismissal to improve the interaction experience.
+
+### 5. User Interface Design
+
+**Challenge:** Creating a visually engaging interface while maintaining readability and usability.
+
+**Solution:** Applied a claymorphism-inspired design system with pastel colours, rounded components, layered shadows and consistent spacing.
+
+
+
+## My Role and Contributions
+
+I developed MyTasks as a full-stack mobile application, taking responsibility for both frontend and backend development, database integration and interface design.
+
+### Frontend Development
+- Developed the mobile application using React Native, Expo and TypeScript.
+- Designed and implemented the claymorphism-inspired user interface.
+- Built task creation, editing, deletion and completion functionality.
+- Integrated date and time pickers.
+- Implemented task filtering, sorting and priority selection.
+- Connected the frontend to the Flask backend through API services.
+
+### Backend Development
+- Developed REST API endpoints using Python and Flask.
+- Implemented CRUD operations for task management.
+- Integrated the backend with MySQL.
+- Handled API requests and responses between the frontend and database.
+- Integrated frontend API services with backend endpoints to support end-to-end task management.
+
+### Database Development
+- Designed the MySQL tasks table.
+- Implemented database connectivity using MySQL Connector.
+- Managed task records, priorities, completion status and scheduling information.
+
+### Documentation and Version Control
+- Documented the project setup, architecture and API endpoints.
+- Organised the project repository using Git and GitHub.
+- Created environment variable examples and setup instructions.
+- Documented application screenshots and development decisions.
+
+
+
+## Project Status
+
+**Status:** Functional portfolio project — local development version.
+
+The application supports:
+- Full CRUD operations for task management.
+- Task scheduling with optional dates and times.
+- Priority assignment and management.
+- Task filtering and sorting.
+- Persistent MySQL database storage.
+
+The application is configured for local development and testing.
+
+## Future Improvements
+
+Potential improvements include:
+
+- Push notifications and task reminders.
+- Recurring tasks.
+- User authentication and personalised task lists.
+- Dark mode support.
+- Improved analytics and productivity insights.
+- Automated backend and frontend testing.
+- Cloud deployment for wider accessibility.
+
+
+
 ## Project Structure
 
 The project is organised into separate frontend and backend directories.
@@ -158,6 +342,14 @@ MyTasks/
 │   ├── .env.example
 │   └── .gitignore
 │
+├── screenshots/
+│   ├── 01-home-screen.PNG
+│   ├── 02-add-task.PNG
+│   ├── 03-date-picker.PNG
+│   ├── 04-time-picker.PNG
+│   ├── 05-edit-task.PNG
+│   ├── 06-completed-tasks.PNG
+│   └── 07-task-management.png
 ├── .gitignore
 └── README.md
 ```
@@ -277,6 +469,8 @@ Run:
 ```bash
 python3 app.py
 ```
+The backend runs on port `5001`. When testing on a physical mobile device, use your computer's local network IP address in the frontend environment configuration instead of `localhost`.
+
 
 The Flask API should now be running on:
 
@@ -295,6 +489,7 @@ Navigate to the frontend directory:
 ```bash
 cd MyTasks/frontend
 ```
+This is correct if the new terminal starts in the directory containing MyTasks
 
 Install the frontend dependencies:
 
@@ -451,19 +646,6 @@ The application uses MySQL to store task records.
 - Run `npm install` inside the frontend directory.
 - Restart Expo after changing environment variables.
 - Check that the backend URL uses your computer's current local IP address when testing on a physical device.
-
----
-
-## Future Improvements
-
-Potential future improvements include:
-
-- User authentication and personal task accounts.
-- Push notifications and task reminders.
-- Recurring tasks.
-- Task categories and labels.
-- Cloud deployment.
-- Improved analytics and productivity insights.
 
 ---
 
