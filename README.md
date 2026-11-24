@@ -1,82 +1,187 @@
-MyTasks – Full-Stack Task Management App
 
-MyTasks is a mobile task management application built to help users organise their daily activities, manage priorities and keep track of deadlines through a simple, user-friendly interface.
+# MyTasks – A Simple Task Management App
 
-The application uses React Native and Expo for the mobile frontend, Flask for the backend API, and MySQL for persistent data storage.
+A simple, user-friendly mobile task management application designed to help users organise their daily activities, manage priorities, and keep track of tasks.
 
-Features
-* Create new tasks.
-* Edit existing tasks.
-* Mark tasks as completed or pending.
-* Delete tasks.
-* Assign Low, Medium or High priorities.
-* Set optional due dates and times.
-* Filter tasks by completion status and priority.
-* Sort tasks by due date.
-* Persist tasks in a MySQL database.
-* Claymorphism-inspired user interface.
+MyTasks is a full-stack project built with React Native, Expo, Flask, and MySQL. It focuses on simplicity, usability, and a clean claymorphism-inspired interface.
 
-Technology Stack
-Area	Technologies
-Mobile frontend	React Native, Expo, TypeScript
-Backend	Python, Flask
-Database	MySQL
-API communication	REST API, JSON
-Styling	React Native Stylesheets
+---
 
+## Table of Contents
 
-Project Structure
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation and Setup](#installation-and-setup)
+- [Environment Variables](#environment-variables)
+- [API Documentation](#api-documentation)
+- [Database Structure](#database-structure)
+- [Troubleshooting](#troubleshooting)
+- [Future Improvements](#future-improvements)
+- [Author](#author)
 
+---
+
+## Project Overview
+
+MyTasks is a mobile task management application that allows users to create, organise, update, and manage their daily tasks.
+
+The application uses a React Native frontend to provide the mobile interface, a Flask backend to handle API requests, and a MySQL database to store task information.
+
+The project follows a client-server architecture:
+
+1. The user interacts with the mobile application.
+2. The frontend sends requests to the Flask API.
+3. The backend processes the requests and communicates with MySQL.
+4. The database stores or retrieves the requested information.
+5. The API sends the response back to the mobile application.
+
+---
+
+## Features
+
+- **Create Tasks:** Add new tasks with a title and priority.
+- **Edit Tasks:** Update existing task information.
+- **Delete Tasks:** Remove tasks that are no longer needed.
+- **Task Completion:** Mark tasks as completed or pending.
+- **Priority Management:** Assign Low, Medium, or High priority levels.
+- **Due Dates:** Set optional deadlines for tasks.
+- **Due Times:** Add optional times to tasks.
+- **Task Filtering:** Filter tasks by status and priority.
+- **Task Sorting:** Organise tasks by their due dates.
+- **Data Persistence:** Store tasks in a MySQL database.
+- **Claymorphism UI:** Enjoy a soft, modern interface with pastel colours and raised visual elements.
+
+---
+
+## Technology Stack
+
+| Area | Technology |
+|---|---|
+| Mobile Frontend | React Native |
+| Development Framework | Expo |
+| Programming Language | TypeScript |
+| Backend | Python |
+| Backend Framework | Flask |
+| Database | MySQL |
+| API Communication | REST API |
+| API Testing | Browser / API testing tools |
+| Version Control | Git |
+| Code Hosting | GitHub |
+
+---
+
+## Project Structure
+
+The project is organised into separate frontend and backend directories.
+
+```text
 MyTasks/
 │
 ├── backend/
 │   ├── app.py
 │   ├── database.py
-│   ├── requirements.txt
 │   ├── test_db.py
-│   └── .env.example
+│   ├── requirements.txt
+│   ├── .env.example
+│   └── .gitignore
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── app/
 │   │   │   └── index.tsx
+│   │   │
 │   │   └── services/
 │   │       └── api.ts
-│   ├── assets/
+│   │
 │   ├── package.json
-│   └── .env.example
+│   ├── tsconfig.json
+│   ├── .env.example
+│   └── .gitignore
 │
 ├── .gitignore
 └── README.md
+```
 
-Prerequisites
+---
 
-Before installing MyTasks, make sure you have:
+## Prerequisites
 
-* Git
-* Python 3
-* Node.js and npm
-* MySQL Server
-* MySQL Workbench (optional)
-* Expo Go on your mobile device
+Before running the project, make sure you have the following installed:
 
+- [Python](https://www.python.org/downloads/)
+- [Node.js](https://nodejs.org/)
+- [MySQL](https://dev.mysql.com/downloads/)
+- [Git](https://git-scm.com/)
+- [Expo Go](https://expo.dev/go) on your mobile device
 
-Installation and Setup
+You will also need a code editor, such as [Visual Studio Code](https://code.visualstudio.com/).
 
-1. Clone the repository
+---
+
+## Installation and Setup
+
+### 1. Clone the Repository
 
 Open your terminal and run:
 
+```bash
 git clone https://github.com/MichelleAnorchie/MyTasks.git
+```
+
+Navigate into the project directory:
+
+```bash
 cd MyTasks
+```
 
+### 2. Backend Setup
 
-2. Set up the MySQL database
+Navigate to the backend directory:
 
-Open MySQL Workbench or your MySQL command line and execute:
+```bash
+cd backend
+```
 
+Create a Python virtual environment:
+
+```bash
+python3 -m venv .venv
+```
+
+Activate the virtual environment on macOS or Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the required Python packages:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+### 3. Database Setup
+
+Open MySQL Workbench or your MySQL terminal.
+
+Create the database:
+
+```sql
 CREATE DATABASE mytasks_db;
+```
+
+Select the database:
+
+```sql
 USE mytasks_db;
+```
+
+Create the tasks table:
+
+```sql
 CREATE TABLE tasks (
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
@@ -84,170 +189,238 @@ CREATE TABLE tasks (
     priority ENUM('low', 'medium', 'high') DEFAULT 'medium',
     due_date DATE DEFAULT NULL,
     due_time TIME DEFAULT NULL,
-    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
-) ENGINE=InnoDB
-DEFAULT CHARSET=utf8mb4;
+);
+```
 
+### 4. Configure Backend Environment Variables
 
-3. Set up the Flask backend
+Inside the `backend` directory, create a file named `.env`.
 
-Navigate to the backend folder:
+Use the following format:
 
-cd backend
-
-Create a Python virtual environment:
-
-python3 -m venv .venv
-
-Activate it on macOS/Linux:
-
-source .venv/bin/activate
-
-On Windows:
-
-.venv\Scripts\activate
-
-Install the dependencies:
-
-pip install -r requirements.txt
-
-4. Configure database credentials
-
-Create a .env file inside the backend folder.
-
-Copy the contents of .env.example into it and provide your own MySQL credentials:
-
+```env
 DB_HOST=localhost
 DB_USER=your_mysql_username
 DB_PASSWORD=your_mysql_password
 DB_NAME=mytasks_db
+```
 
-Do not upload your .env file or share your database password.
+Replace the example username and password with your own MySQL credentials.
 
+**Important:** Never upload your actual `.env` file or database password to GitHub.
 
-5. Test the database connection
+### 5. Start the Backend Server
 
-While inside the backend folder and with the virtual environment activated, run:
-
-python test_db.py
-
-A successful connection should display:
-
-SUCCESS! Connected to MySQL.
-Database: mytasks_db
-
-
-6. Start the Flask API
+Make sure you are inside the `backend` directory and your virtual environment is activated.
 
 Run:
 
-python app.py
+```bash
+python3 app.py
+```
 
-The backend runs on:
+The Flask API should now be running on:
 
+```text
 http://localhost:5001
+```
 
-Keep this terminal running.
+Keep this terminal running while using the application.
 
+### 6. Frontend Setup
 
-7. Set up the mobile frontend
+Open another terminal window.
 
-Open a second terminal window.
+Navigate to the frontend directory:
 
-Navigate to the frontend folder from the project root:
+```bash
+cd MyTasks/frontend
+```
 
-cd frontend
+Install the frontend dependencies:
 
-Install dependencies:
-
+```bash
 npm install
+```
 
+Create a `.env` file inside the `frontend` directory.
 
-8. Configure the frontend API address
+Add your computer's local network IP address:
 
-Create a .env file inside the frontend folder.
-
-Copy the contents of .env.example and replace the placeholder with your computer’s local network IP address:
-
+```env
 EXPO_PUBLIC_API_URL=http://YOUR_COMPUTER_IP:5001
+```
+
+Replace `YOUR_COMPUTER_IP` with your computer's current local network IP address.
 
 For example:
 
+```env
 EXPO_PUBLIC_API_URL=http://192.168.1.10:5001
+```
 
-Use your actual computer IP address, not the example above.
+Your phone and computer should be connected to the same local network when testing over Wi-Fi.
 
-Important: When testing on a physical mobile device, the phone and computer should be connected to the same local network. Ensure your firewall allows connections to port 5001.
+### 7. Start the Mobile Application
 
-Restart Expo after changing environment variables.
+From the frontend directory, run:
 
-
-9. Start the Expo application
-
-From the frontend folder, run:
-
+```bash
 npx expo start
+```
 
-Scan the QR code using Expo Go on your mobile device.
+Open Expo Go on your mobile device and scan the QR code displayed in your terminal or browser.
 
-You should now be able to use MyTasks on your phone.
+The application should now connect to the Flask backend.
 
-API Endpoints
+---
 
-Method	Endpoint	Description
-GET	/	Welcome message
-GET	/tasks	Retrieve all tasks
-POST	/tasks	Create a task
-PUT	/tasks/<id>	Update a task
-DELETE	/tasks/<id>	Delete a task
+## Environment Variables
 
-Environment Variables
+The project uses environment variables to keep configuration details separate from the application code.
 
-The project uses environment variables to protect sensitive database credentials and configure API communication.
+### Backend
 
-* DB_HOST – MySQL server address.
-* DB_USER – MySQL username.
-* DB_PASSWORD – MySQL password.
-* DB_NAME – Database name.
-* EXPO_PUBLIC_API_URL – Backend API address accessible to the mobile app.
+| Variable | Description |
+|---|---|
+| DB_HOST | MySQL server address |
+| DB_USER | MySQL username |
+| DB_PASSWORD | MySQL password |
+| DB_NAME | Database name |
 
-Never commit real passwords or private credentials to GitHub.
+### Frontend
 
-Troubleshooting
+| Variable | Description |
+|---|---|
+| EXPO_PUBLIC_API_URL | URL of the Flask backend API |
 
-Cannot connect to MySQL
+Example environment files are provided in the repository:
 
-* Ensure MySQL Server is running.
-* Check your database name and credentials.
-* Confirm that the tasks table has been created.
+- `backend/.env.example`
+- `frontend/.env.example`
 
-Mobile app cannot connect to the backend
+Copy these examples into `.env` files and update the values for your environment.
 
-* Ensure Flask is running on port 5001.
-* Check the API address in the frontend .env file.
-* Ensure your phone and computer are on the same network.
-* Check your computer’s firewall settings.
+---
 
-Expo does not recognise environment changes
+## API Documentation
 
-Stop Expo and restart it:
+The Flask backend provides REST API endpoints for managing tasks.
 
-npx expo start --clear
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Check the API welcome route |
+| GET | `/tasks` | Retrieve all tasks |
+| POST | `/tasks` | Create a new task |
+| PUT | `/tasks/<id>` | Update an existing task |
+| DELETE | `/tasks/<id>` | Delete a task |
 
-Future Improvements
+### Example: Create a Task
 
-* Task reminders and notifications.
-* User authentication.
-* Cloud deployment.
-* Additional productivity and task management features.
+**Request**
 
-Author
+```http
+POST /tasks
+```
 
-Michelle Anorchie
+**Example JSON Body**
 
-GitHub: @MichelleAnorchie
+```json
+{
+    "title": "Complete project documentation",
+    "priority": "high",
+    "due_date": "2026-12-01",
+    "due_time": "14:30"
+}
+```
 
-⸻
+### Example: Update a Task
 
-Built with React Native, Expo, Flask and MySQL.
+**Request**
+
+```http
+PUT /tasks/1
+```
+
+**Example JSON Body**
+
+```json
+{
+    "title": "Complete project documentation",
+    "priority": "medium",
+    "is_completed": true
+}
+```
+
+---
+
+## Database Structure
+
+The application uses MySQL to store task records.
+
+### Tasks Table
+
+| Column | Data Type | Description |
+|---|---|---|
+| id | INT | Unique task identifier |
+| title | VARCHAR(255) | Task title |
+| is_completed | TINYINT(1) | Completion status |
+| priority | ENUM | Task priority |
+| due_date | DATE | Optional task deadline |
+| due_time | TIME | Optional task time |
+| created_at | TIMESTAMP | Task creation date and time |
+
+---
+
+## Troubleshooting
+
+### Backend Connection Issues
+
+- Ensure the Flask server is running.
+- Check that the API URL is correct.
+- Confirm that your phone and computer are connected to the same network.
+- Check your MySQL database credentials.
+
+### MySQL Connection Issues
+
+- Ensure MySQL Server is running.
+- Confirm that the database `mytasks_db` exists.
+- Check the credentials in your backend `.env` file.
+
+### Frontend Issues
+
+- Run `npm install` inside the frontend directory.
+- Restart Expo after changing environment variables.
+- Check that the backend URL uses your computer's current local IP address when testing on a physical device.
+
+---
+
+## Future Improvements
+
+Potential future improvements include:
+
+- User authentication and personal task accounts.
+- Push notifications and task reminders.
+- Recurring tasks.
+- Task categories and labels.
+- Cloud deployment.
+- Improved analytics and productivity insights.
+
+---
+
+## Author
+
+**Michelle Frimpomaah Anorchie**
+
+Software Developer | Frontend Developer | UI/UX Designer
+
+- GitHub: [MichelleAnorchie](https://github.com/MichelleAnorchie)
+- Project Repository: [MyTasks](https://github.com/MichelleAnorchie/MyTasks)
+
+---
+
+## License
+
+This project is currently developed for learning and portfolio purposes.
