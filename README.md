@@ -46,33 +46,53 @@ The project follows a client-server architecture:
 
 MyTasks features a soft claymorphism-inspired interface designed to make everyday task management simple, intuitive, and visually engaging.
 
-### 1. Home Screen
-
-The main dashboard displays task progress, task summaries, and the user’s task list.
-
-### 2. Add a Task
-
-Users can create tasks by entering a title and selecting a priority level.
-
-### 3. Date Picker
-
-Users can select a due date for their tasks using the calendar interface.
-
-### 4. Time Picker
-
-Users can optionally assign a specific time to a task.
-
-### 5. Edit Task
-
-Existing tasks can be updated, allowing users to modify task details and priorities.
-
-### 6. Completed Tasks
-
-Completed tasks are visually distinguished from pending tasks, helping users track their progress.
-
-### 7. Task Management
-
-Users can manage multiple tasks, monitor their status, and organise their daily activities.
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./screenshots/01-home-screen.PNG" width="130" align="left" alt="Home Screen">
+      <strong>1. Home Screen</strong>
+      <p>The main dashboard displays task progress, task summaries, and the user's task list.</p>
+    </td>
+    <td width="50%">
+      <img src="./screenshots/02-add-task.PNG" width="130" align="left" alt="Add Task">
+      <strong>2. Add a Task</strong>
+      <p>Users can create tasks by entering a title and selecting a priority level.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./screenshots/03-date-picker.PNG" width="130" align="left" alt="Date Picker">
+      <strong>3. Date Picker</strong>
+      <p>Users can select a due date using the calendar interface.</p>
+    </td>
+    <td width="50%">
+      <img src="./screenshots/04-time-picker.PNG" width="130" align="left" alt="Time Picker">
+      <strong>4. Time Picker</strong>
+      <p>Users can optionally assign a specific time to a task.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./screenshots/05-edit-task.PNG" width="130" align="left" alt="Edit Task">
+      <strong>5. Edit Task</strong>
+      <p>Existing tasks can be updated, allowing users to modify task details and priorities.</p>
+    </td>
+    <td width="50%">
+      <img src="./screenshots/06-completed-tasks.PNG" width="130" align="left" alt="Completed Tasks">
+      <strong>6. Completed Tasks</strong>
+      <p>Completed tasks are visually distinguished from pending tasks to help users track progress.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./screenshots/07-task-management.png" width="130" align="left" alt="Task Management">
+      <strong>7. Task Management</strong>
+      <p>Users can manage multiple tasks, monitor their status, and organise daily activities.</p>
+    </td>
+    <td width="50%">
+    </td>
+  </tr>
+</table>
 
 
 
